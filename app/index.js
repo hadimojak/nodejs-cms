@@ -12,6 +12,7 @@ const mongoose = require("mongoose");
 const flash = require("connect-flash");
 const passport = require("passport");
 const { use } = require("passport");
+const adminRoute = require("./routes/web/admin");
 const url = `mongodb+srv://mojak:0015166031@nodejs-store.tbcbg.mongodb.net/RShop?retryWrites=true&w=majority`;
 
 module.exports = class Application {
@@ -19,6 +20,7 @@ module.exports = class Application {
     this.setupExpress();
     this.dbConnection();
     this.setConfig();
+    this.setRouters();
   }
 
   setupExpress() {
@@ -57,10 +59,11 @@ module.exports = class Application {
     );
     app.use(cookieParser("myShop123456"));
     app.use(flash());
+  }
 
-    app.get("/", (req, res) => {
-      //   res.send("hellow wolrd");
-      res.json("hellow world");
-    });
+  setRouters() {
+    app.use(require("app/routes/api"));
+    app.use(require("app/routes/web/index"));
   }
 };
+ 
