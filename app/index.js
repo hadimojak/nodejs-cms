@@ -40,7 +40,7 @@ module.exports = class Application {
   }
 
   setConfig() {
-    app.use(express.static("pulic"));
+    app.use(express.static("public"));
     app.set("view engine", "ejs");
     app.set("views", path.resolve("./resource/views"));
     // app.use(bodyParser.json()); //deprecated
@@ -66,4 +66,3 @@ module.exports = class Application {
     app.use(require("app/routes/web/index"));
   }
 };
- 
