@@ -4,7 +4,6 @@ const http = require("http");
 const path = require("path");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
-const validator = require("express-validator").body;
 const session = require("express-session");
 // const MongoStore = require("connect-mongo")(session);
 const MongoDBStore = require("connect-mongodb-session")(session);
@@ -48,7 +47,6 @@ module.exports = class Application {
     // app.use(bodyParser.urlencoded({ extended: true })); //deprecated
     app.use(express.urlencoded({ extended: true }));
     // app.use(body());
-    app.use(validator());
     app.use(
       session({
         secret: "myShop",
